@@ -63,81 +63,89 @@ bot.on('ready', () => {
   added ON EVERY CHANNEL!
 */
 bot.on('message', message => {
-  // Have a variable to not mind lower and/or uppercase in the message.
-  var msg = message.content.toLowerCase();
   /*
     NOTE: How can we isolate each function in a file, in order to just call that
     file and run it when we get a command?.
   */
+  if (message.content.startsWith("!")) {
+    // Have a variable to not mind lower and/or uppercase in the message.
+    var msg = message.content.toLowerCase();
+    var command = message.content.split(" ")[0];
 
-  /*
-    Command: !help;
-    Description:
-      Shows the current list of function available to use for the tsundere!
-      Keep in mind that this is an exact feed from the JSON file!
-  */
-  if (msg === "!help") {
-    var text = "Esto es en lo que te puedo ayudar por el momento: \n\n";
-    for (var index in commands) {
-      text += commands[index] + "\n";
+    if (msg.includes("--explain")) {
+      message.channel.sendMessage(obj.function[command].explain);
+      return;
     }
-    text += "\nY si quieres saber como funciona cada uno, preguntame el comando "+
-    "que quieres que te explique agregando **'--explain'** después. Si te " +
-    "explico ahorita nunca dejaré de perder mi tiempo contigo!";
-    message.channel.sendMessage(text);
-  }
-  /*
-    Message: "!bot"
-    Description:
-      A message string replying back. This is a basic function to ask Chitoge if
-      she's still alive.
-  */
-  if (msg === '!bot') {
-    message.channel.sendMessage('Llamaste?');
-  }
 
-  /*
-    Message: "!Quien", "!Who"
-    Description:
-      Ask the bot a "Who" question, and the bot will reply back with a user or
-      more currently on the server.
-  */
-  if (msg.startsWith("!quien") || msg.startsWith("!who")) {
-    // Get the guild (server) where the comment was sent to.
-    var src = message.guild.id
-    /*
-      Okay, this next line is a bit complicated, so here's the explanation.
-      I'll go 1 by 1.
-      BOT: The bot client
-      GUILDS: The servers which this bot is added.
-      GET(ID): Get an element by looking for the parameter.
-      MEMBERS: Get all users on the guild (as a User object).
-      RANDOM(): Self explanitory.
-      USER: Reference the object as user.
-      USERNAME: Finally, the username.
-    */
-    var who = bot.guilds.get(src).members.random().user.username;
-    //var random = Math.floor(Math.random()*101);
-    message.channel.sendMessage(who);
-  }
+    switch(command) {
+      case "!help":
+        /*
+          Command: !help;
+          Description:
+            Shows the current list of function available to use for the tsundere!
+            Keep in mind that this is an exact feed from the JSON file!
+        */
+        var text = "Esto es en lo que te puedo ayudar por el momento: \n\n";
+        for (var index in commands) {
+          text += commands[index] + "\n";
+        }
+        text += "\nY si quieres saber como funciona cada uno, preguntame el comando "+
+        "que quieres que te explique agregando **'--explain'** después. Si te " +
+        "explico ahorita nunca dejaré de perder mi tiempo contigo!";
+        message.channel.sendMessage(text);
+      break;
 
-  /*
-    Message: String + "> 8Ball"
-    Description:
-      Ask Chitoge anything and she'll reply back with a random message! Similar
-      to ask those balls which replies back "Yes", "No" or "Ask later". Of
-      course we're adding more stuff to make this more fun!
-    NOTE:
-      @Eeveecario: This can be updated and more automatic! I'll be in charge of
-      improving this system! If you like to modify this section, please contact
-      me to be aware!
-  */
+      case "!bot":
+        /*
+          Command: "!bot"
+          Description:
+            A message string replying back. This is a basic function to ask Chitoge if
+            she's still alive.
+        */
+        message.channel.sendMessage('Llamaste?');
+      break;
 
-  if (msg.startsWith("!8ball")) {
-    /* Check if the command is properly well written */
-    message.channel.sendMessage(
-      _8BALL[Math.floor(Math.random() * _8BALL.length)]
-    );
+      case "!who":
+        /*
+          Command: "!Who"
+          Description:
+            Ask the bot a "Who" question, and the bot will reply back with a user or
+            more currently on the server.
+        */
+        // Get the guild (server) where the comment was sent to.
+        var src = message.guild.id
+        /*
+          Okay, this next line is a bit complicated, so here's the explanation.
+          I'll go 1 by 1.
+          BOT: The bot client
+          GUILDS: The servers which this bot is added.
+          GET(ID): Get an element by looking for the parameter.
+          MEMBERS: Get all users on the guild (as a User object).
+          RANDOM(): Self explanitory.
+          USER: Reference the object as user.
+          USERNAME: Finally, the username.
+        */
+        var who = bot.guilds.get(src).members.random().user.username;
+        message.channel.sendMessage(who);
+      break;
+
+      case "!8Ball":
+        /*
+          Command: "!8Ball"
+          Description:
+            Ask Chitoge anything and she'll reply back with a random message! Similar
+            to ask those balls which replies back "Yes", "No" or "Ask later". Of
+            course we're adding more stuff to make this more fun!
+          NOTE:
+            @Eeveecario: This can be updated and more automatic! I'll be in charge of
+            improving this system! If you like to modify this section, please contact
+            me to be aware!
+        */
+        message.channel.sendMessage(
+          _8BALL[Math.floor(Math.random() * _8BALL.length)]
+        );
+      break;
+    }
   }
 });
 
