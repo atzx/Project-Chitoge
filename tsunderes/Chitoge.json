@@ -1,0 +1,19 @@
+{
+  "name": "Chitoge",
+  "avatar": "",
+  "function": {
+    "!help": {
+      "--explain": "Te explico como quiero que me hables, para que te pueda responder! Y si no te gusta puedes ir buscando a otra!"
+    },
+    "!bot": {
+      "--explain": "Simplemente te contesto si puedo escucharte. Que esperabas?!",
+      "message": "Llamaste?"
+    },
+    "!who": {
+      "--explain": "Selecciono a una persona al azar! Eso te puede incluir! Y-y talvez yo t-tambien..."
+    },
+    "!8Ball": {
+
+    }
+  }
+}
