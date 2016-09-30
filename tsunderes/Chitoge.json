@@ -3,7 +3,9 @@
   "avatar": "",
   "function": {
     "!help": {
-      "explain": "Te explico como quiero que me hables, para que te pueda responder! Y si no te gusta puedes ir buscando a otra!"
+      "explain": "Te explico como quiero que me hables, para que te pueda responder! Y si no te gusta puedes ir buscando a otra!",
+      "messageHeader": "Esto es en lo que te puedo ayudar por el momento: \n\n",
+      "messageFooter": "\nY si quieres saber como funciona cada uno, preguntame el comando que quieres que te explique agregando **'--explain'** después. Si te explico ahorita nunca dejaré de perder mi tiempo contigo!"
     },
     "!bot": {
       "explain": "Simplemente te contesto si puedo escucharte. Que esperabas?!",
@@ -12,8 +14,17 @@
     "!who": {
       "explain": "Selecciono a una persona al azar! Eso te puede incluir! Y-y talvez yo t-tambien..."
     },
-    "!8Ball": {
-      "explain": "Preguntame algo y te respondo! No me culpes si mi respuesta no es coherente!"
+    "!8ball": {
+      "explain": "Preguntame algo y te respondo! No me culpes si mi respuesta no es coherente!",
+      "message": [
+        "Y tu quien eres?!",
+        "Estas pero bien idiota!",
+        "HA! Nunca!",
+        "Para alguien más es facil, pero para un primate como tú es imposible!",
+        "T-Talvez...",
+        "Si!",
+        "P-por supuesto que sí! Pero deja de preguntarme cuando todo mundo está viendo..."
+      ]
     }
   }
 }

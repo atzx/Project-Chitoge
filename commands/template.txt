@@ -1,0 +1,30 @@
+/*
+  @file: FILE_NAME.js
+  @version: 1.0
+  @author:
+  @date:
+  @description:
+*/
+
+const COMMAND = "!YOUR FILE NAME";
+
+/*
+  We require 3 parameters to make this work properly:
+  @params client:
+    A Reference of the bot.
+  @params message:
+    The message the user sent.
+  @params tsundereJSON:
+    The configuration of the current active tsundere.
+*/
+
+module.exports = {
+  execute: function(client, message, tsundereJSON) {
+    // YOUR CODE HERE
+    return "OK!";
+  },
+  explain: function(client, message, tsundereJSON) {
+    message.channel.sendMessage(tsundereJSON.function[COMMAND].explain);
+    return "OK!";
+  }
+}
