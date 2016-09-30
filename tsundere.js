@@ -15,25 +15,38 @@ const fs = require('fs');
 const bot = new Discord.Client();
 //The token of your bot - https://discordapp.com/developers/applications/me
 const TOKEN = 'MjMwMTcwOTI3NTkyMjQzMjAw.Cst65A.9JbdaQWWOMcjWeUzsMomPhgaSi8';
-const _8BALL = [
-  "Y tu quien eres?!",
-  "Estas pero bien idiota!",
-  "HA! Nunca!",
-  "Para alguien más es facil, pero para un primate como tú es imposible!",
-  "T-Talvez...",
-  "Si!",
-  "P-por supuesto que sí! Pero deja de preguntarme cuando todo mundo está viendo..."
-];
-/* #### End of constants! ################################################### */
 
-/* #### Variables! ########################################################## */
+/* #### Global Variables! ################################################### */
 /*
   NOTE: We can try making a .conf or a config file to change some initial values
 */
 var tsundere = "Chitoge";
 var obj = JSON.parse(fs.readFileSync('tsunderes/'+tsundere+".json", 'utf8'));
-var commands = [];
-/* #### End of variables! ################################################### */
+var commands = {};
+var commandList = [];
+
+/* #### Functions ########################################################### */
+/*
+  @function: loadCommandFiles
+  @description:
+    Load the files for the commands located in the /commands/ directory.
+    All loaded functions will be added to the "commands" array declared in
+    variables.
+  @param {array} commands -
+    An array of strings containing all the commands loaded from the JSON file.
+    The string will include a "!" char before the actual command.
+  @returns {Object}:
+    Returns an object containing the functions for each command the bot
+    supports.
+*/
+function loadCommandFiles(commandList) {
+  var objReturner = {}
+  for (var index in commandList) {
+    var temp = commandList[index].replace("!", "");
+    objReturner[commandList[index]] = require("./commands/"+temp+".js");
+  }
+  return objReturner;
+}
 
 /* #### Listeners! ########################################################## */
 /* Ready Event Listener! */
@@ -41,20 +54,26 @@ var commands = [];
   This will be the initial actions of the bot whenever it is ready to interact
   with other users in the discord!
 */
+console.log("Loading...");
+
 bot.on('ready', () => {
   // Initial message
   console.log('Tsundere bot v0.1 ready to go!');
+  /*
   console.log("------------------------------");
   console.log("JSON: ");
   console.log(obj);
   console.log("------------------------------");
+  */
 
   // Load all available commands to display with "help"
   commandsJSON = obj.function;
   for (var command in commandsJSON) {
-    commands.push(command);
+    commandList.push(command);
   }
-  console.log(commands);
+
+  commands = loadCommandFiles(commandList);
+  // console.log(commands);
 });
 
 /* Message Event Listener! */
@@ -63,89 +82,17 @@ bot.on('ready', () => {
   added ON EVERY CHANNEL!
 */
 bot.on('message', message => {
-  /*
-    NOTE: How can we isolate each function in a file, in order to just call that
-    file and run it when we get a command?.
-  */
   if (message.content.startsWith("!")) {
     // Have a variable to not mind lower and/or uppercase in the message.
     var msg = message.content.toLowerCase();
     var command = message.content.split(" ")[0];
 
     if (msg.includes("--explain")) {
-      message.channel.sendMessage(obj.function[command].explain);
+      commands[command].explain(bot, message, obj);
       return;
     }
 
-    switch(command) {
-      case "!help":
-        /*
-          Command: !help;
-          Description:
-            Shows the current list of function available to use for the tsundere!
-            Keep in mind that this is an exact feed from the JSON file!
-        */
-        var text = "Esto es en lo que te puedo ayudar por el momento: \n\n";
-        for (var index in commands) {
-          text += commands[index] + "\n";
-        }
-        text += "\nY si quieres saber como funciona cada uno, preguntame el comando "+
-        "que quieres que te explique agregando **'--explain'** después. Si te " +
-        "explico ahorita nunca dejaré de perder mi tiempo contigo!";
-        message.channel.sendMessage(text);
-      break;
-
-      case "!bot":
-        /*
-          Command: "!bot"
-          Description:
-            A message string replying back. This is a basic function to ask Chitoge if
-            she's still alive.
-        */
-        message.channel.sendMessage('Llamaste?');
-      break;
-
-      case "!who":
-        /*
-          Command: "!Who"
-          Description:
-            Ask the bot a "Who" question, and the bot will reply back with a user or
-            more currently on the server.
-        */
-        // Get the guild (server) where the comment was sent to.
-        var src = message.guild.id
-        /*
-          Okay, this next line is a bit complicated, so here's the explanation.
-          I'll go 1 by 1.
-          BOT: The bot client
-          GUILDS: The servers which this bot is added.
-          GET(ID): Get an element by looking for the parameter.
-          MEMBERS: Get all users on the guild (as a User object).
-          RANDOM(): Self explanitory.
-          USER: Reference the object as user.
-          USERNAME: Finally, the username.
-        */
-        var who = bot.guilds.get(src).members.random().user.username;
-        message.channel.sendMessage(who);
-      break;
-
-      case "!8Ball":
-        /*
-          Command: "!8Ball"
-          Description:
-            Ask Chitoge anything and she'll reply back with a random message! Similar
-            to ask those balls which replies back "Yes", "No" or "Ask later". Of
-            course we're adding more stuff to make this more fun!
-          NOTE:
-            @Eeveecario: This can be updated and more automatic! I'll be in charge of
-            improving this system! If you like to modify this section, please contact
-            me to be aware!
-        */
-        message.channel.sendMessage(
-          _8BALL[Math.floor(Math.random() * _8BALL.length)]
-        );
-      break;
-    }
+    commands[command].execute(bot, message, obj);
   }
 });
 
