@@ -14,7 +14,7 @@ const fs = require('fs');
 /* Values! */
 const bot = new Discord.Client();
 //The token of your bot - https://discordapp.com/developers/applications/me
-const TOKEN = 'MjMyNjgwOTE5NDE1MjU5MTQ2.CtSekw.kOVoabfCCgWGIsJsUCmADXcOLR4';
+const TOKEN = 'MjMwMTcwOTI3NTkyMjQzMjAw.Cst65A.9JbdaQWWOMcjWeUzsMomPhgaSi8';
 
 /* #### Global Variables! ################################################### */
 /*
@@ -96,6 +96,12 @@ bot.on('message', message => {
   }
 });
 
+/* Newcomer listener! */
+/*
+  This section will be triggered when a member joins the server. This can allow
+  the bot to send a direct message to the bot, assign a role and shoutout
+  him/her on the general chat!
+*/
 bot.on("guildMemberAdd", (guild, member) => {
     console.log('Nuevo miembro' + member.user.username);
     console.log('nombre del canal' + guild.name)
