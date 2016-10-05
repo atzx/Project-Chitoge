@@ -1,0 +1,25 @@
+{
+  "name": "chitogebot",
+  "version": "1.0.0",
+  "description": "Un bot para la comunidad de smash mexico",
+  "main": "tsundere.js",
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "colors": "^1.1.2",
+    "discord.js": "^9.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enriqueenciso/Project-Chitoge.git"
+  },
+  "author": "Eevecario, Waymas y la demas banda que falte",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/enriqueenciso/Project-Chitoge/issues"
+  },
+  "homepage": "https://github.com/enriqueenciso/Project-Chitoge#readme"
+}
