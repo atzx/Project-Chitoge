@@ -14,7 +14,7 @@ const fs = require('fs');
 /* Values! */
 const bot = new Discord.Client();
 //The token of your bot - https://discordapp.com/developers/applications/me
-const TOKEN = 'MjMwMTcwOTI3NTkyMjQzMjAw.Cst65A.9JbdaQWWOMcjWeUzsMomPhgaSi8';
+const TOKEN = 'MjMyNjgwOTE5NDE1MjU5MTQ2.CtSekw.kOVoabfCCgWGIsJsUCmADXcOLR4';
 
 /* #### Global Variables! ################################################### */
 /*
@@ -94,6 +94,13 @@ bot.on('message', message => {
 
     commands[command].execute(bot, message, obj);
   }
+});
+
+bot.on("guildMemberAdd", (guild, member) => {
+    console.log('Nuevo miembro' + member.user.username);
+    console.log('nombre del canal' + guild.name)
+    mensajeBienvenida = 'Bienvenido ' + member.user.username + ' para entender como funciona el canal de ' + guild.name + ' dirigete al canal de #leame para mayor informacion';
+    member.sendTTSMessage(mensajeBienvenida).then(message => console.log('Mensaje TTS enviado')).catch(console.error);
 });
 
 /* Finally, Log in! */
