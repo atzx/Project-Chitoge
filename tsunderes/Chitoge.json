@@ -1,6 +1,19 @@
 {
   "name": "Chitoge",
   "avatar": "",
+  "newMember": {
+    "private_msg": {
+      "header": "Bienvenido al Discord de **<GUILD>**!",
+      "intro": "Soy <BOTNAME>, Intento ayudar a la comunidad con tareas para administrar o hacer esto más divertido! Por el momento sigo aprendiendo como ayudar a la comunidad, pero espero ser de ayuda!",
+      "body": "Por el momento, sólo tienes acceso al canal de **#leame** (te recomiendo que lo leas) y **#asignacion_de_rol**, donde te asignamos a que estado perteneces y después tendrás acceso a todo el canal! (Usa **!role --explain** para saber como!)",
+      "footer": "Para terminar, si necesitas saber en que más te puedo ayudar, intenta usar el comando '!help' y te diré en qué te puedo ayudar!\n\nNuevamente, Bienvenido!\nPor cierto, no ocasiones problemas o te daré una lección personalmente!"
+    },
+    "guild_msg": {
+      "header": "Bienvenid@ **<USERNAME>** al Discord de **<GUILD>**!\n\n",
+      "body": "El servidor con todo el Smash de mexicanos para mexicanos (y algunas otras nacionalidades... créeme, también pensamos en eso).\n\n",
+      "footer": "Disfruta tu estadia y espero te diviertas con los demás smashers de la comunidad... Y no estés ocasionando problemas o me encargaré personalmente de ti... Y no te va a gustar..."
+    }
+  },
   "function": {
     "!help": {
       "explain": "Te explico como quiero que me hables, para que te pueda responder! Y si no te gusta puedes ir buscando a otra!",
