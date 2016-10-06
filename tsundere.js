@@ -96,5 +96,18 @@ bot.on('message', message => {
   }
 });
 
+/* Newcomer listener! */
+/*
+  This section will be triggered when a member joins the server. This can allow
+  the bot to send a direct message to the bot, assign a role and shoutout
+  him/her on the general chat!
+*/
+bot.on("guildMemberAdd", (guild, member) => {
+    console.log('Nuevo miembro' + member.user.username);
+    console.log('nombre del canal' + guild.name)
+    mensajeBienvenida = 'Bienvenido ' + member.user.username + ' para entender como funciona el canal de ' + guild.name + ' dirigete al canal de #leame para mayor informacion';
+    member.sendTTSMessage(mensajeBienvenida).then(message => console.log('Mensaje TTS enviado')).catch(console.error);
+});
+
 /* Finally, Log in! */
 bot.login(TOKEN);
