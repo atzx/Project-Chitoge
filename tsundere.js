@@ -102,11 +102,40 @@ bot.on('message', message => {
   the bot to send a direct message to the bot, assign a role and shoutout
   him/her on the general chat!
 */
+
+/* New Server Member! */
 bot.on("guildMemberAdd", (guild, member) => {
-    console.log('Nuevo miembro' + member.user.username);
-    console.log('nombre del canal' + guild.name)
-    mensajeBienvenida = 'Bienvenido ' + member.user.username + ' para entender como funciona el canal de ' + guild.name + ' dirigete al canal de #leame para mayor informacion';
-    member.sendTTSMessage(mensajeBienvenida).then(message => console.log('Mensaje TTS enviado')).catch(console.error);
+  // Log activity
+  console.log("New member: " + member.user.username);
+  console.log("Guild name: " + guild.name);
+
+  /* Public welcome! */
+
+  // Create message
+	var reply = obj.newMember.guild_msg.header || "Bienvenid@!";
+  reply = reply.replace("<USERNAME>", member.user.username); // Insert username;
+  reply = reply.replace("<GUILD>", guild.name) // Insert guildname
+  reply += obj.newMember.guild_msg.body + obj.newMember.guild_msg.footer;
+
+  // Welcoming message to the main channel!
+  guild.channels.get(guild.id).sendMessage(reply);
+
+  /* Private message! */
+
+  //Build message
+  var dirMsg =
+    obj.newMember.private_msg.header + "\n\n" +
+    obj.newMember.private_msg.intro + "\n" +
+    obj.newMember.private_msg.body + "\n\n" +
+    obj.newMember.private_msg.footer;
+  dirMsg = dirMsg.replace("<GUILD>", guild.name) // Insert guildname
+  dirMsg = dirMsg.replace("<BOTNAME>", obj.name) // Insert current tsundere
+
+  // Direct Message welcoming!
+  member.sendMessage(dirMsg).then(message => console.log('Mensaje personal enviado')).catch(console.error);
+
+  /* Further actions! */
+
 });
 
 /* Finally, Log in! */
