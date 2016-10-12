@@ -91,8 +91,7 @@ bot.on('message', message => {
       commands[command].explain(bot, message, obj);
       return;
     }
-
-    commands[command].execute(bot, message, obj);
+      commands[command].execute(bot, message, obj);
   }
 });
 
