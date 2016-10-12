@@ -16,7 +16,7 @@ module.exports = {
     var reply = "";
     for (var evento in eventos){
       var obj = eventos[evento];
-      reply += obj.nombre + "\n" + obj.link + "\n" + obj.fecha + "\n\n";
+      reply += obj.nombre + "\n" + obj.link + "\n" + obj.lugar + "\n" + obj.fecha + "\n\n";
     }
     message.channel.sendMessage(reply);
     return "OK!";

@@ -33,16 +33,19 @@
         "evento" : {
           "nombre" : "**sf5**",
           "link" : "linkasft",
+          "lugar" : "municipio,estado",
           "fecha" : "12/10/2020"
         },
         "evento2" : {
           "nombre" : "**sf6**",
           "link" : "linkasf6",
+          "lugar" : "municipio,estado",
           "fecha" : "12/10/2020"
         },
         "evento3" : {
           "nombre" : "**sf6**",
           "link" : "linkasf6",
+          "lugar" : "municipio,estado",
           "fecha" : "12/10/2020"
         }
       }
