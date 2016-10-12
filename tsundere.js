@@ -14,7 +14,7 @@ const fs = require('fs');
 /* Values! */
 const bot = new Discord.Client();
 //The token of your bot - https://discordapp.com/developers/applications/me
-const TOKEN = 'MjMyNjgwOTE5NDE1MjU5MTQ2.CtSekw.kOVoabfCCgWGIsJsUCmADXcOLR4';
+const TOKEN = 'MjMwMTcwOTI3NTkyMjQzMjAw.Cst65A.9JbdaQWWOMcjWeUzsMomPhgaSi8';
 
 /* #### Global Variables! ################################################### */
 /*
