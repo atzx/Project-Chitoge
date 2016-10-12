@@ -14,7 +14,7 @@ const fs = require('fs');
 /* Values! */
 const bot = new Discord.Client();
 //The token of your bot - https://discordapp.com/developers/applications/me
-const TOKEN = 'MjMwMTcwOTI3NTkyMjQzMjAw.Cst65A.9JbdaQWWOMcjWeUzsMomPhgaSi8';
+const TOKEN = 'MjMyNjgwOTE5NDE1MjU5MTQ2.CtSekw.kOVoabfCCgWGIsJsUCmADXcOLR4';
 
 /* #### Global Variables! ################################################### */
 /*
@@ -91,8 +91,7 @@ bot.on('message', message => {
       commands[command].explain(bot, message, obj);
       return;
     }
-
-    commands[command].execute(bot, message, obj);
+      commands[command].execute(bot, message, obj);
   }
 });
 

@@ -27,6 +27,26 @@
     "!who": {
       "explain": "Selecciono a una persona al azar! Eso te puede incluir! Y-y talvez yo t-tambien..."
     },
+    "!eventos": {
+      "explain": "Una lista de los próximos eventos a nivel nacional",
+      "loseventos" : {
+        "evento" : {
+          "nombre" : "**sf5**",
+          "link" : "linkasft",
+          "fecha" : "12/10/2020"
+        },
+        "evento2" : {
+          "nombre" : "**sf6**",
+          "link" : "linkasf6",
+          "fecha" : "12/10/2020"
+        },
+        "evento3" : {
+          "nombre" : "**sf6**",
+          "link" : "linkasf6",
+          "fecha" : "12/10/2020"
+        }
+      }
+    },
     "!8ball": {
       "explain": "Preguntame algo y te respondo! No me culpes si mi respuesta no es coherente!",
       "message": [
