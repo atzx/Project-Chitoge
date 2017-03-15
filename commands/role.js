@@ -18,14 +18,55 @@ module.exports = {
     return "OK!";
   },
   execute: function(client, message, tsundereJSON) {
-    // Guild ID
-    var guildID = message.guild.id;
+    /* Analyze message and check if the command has some params */
+    var msgSyntax = message.content.toLowerCase().split(' ');
+    switch (msgSyntax[1]) {
+      case "--list":
+        /* List all roles available on the server! */
+        guildRoles = message.guild.roles.map(role => role.name);
+        var strRoles = '';
+        guildRoles.forEach(guildRole => {
+          strRoles += guildRole + ',\n';
+        });
+
+        message.channel.sendMessage(
+          tsundereJSON.function[COMMAND].guildRoles.header + '\n\n' +
+          strRoles.replace('@', '') + '\n' +
+          tsundereJSON.function[COMMAND].guildRoles.footer
+        );
+
+        return 'OK!';
+      break;
+      case "--set":
+
+      break;
+      default:
+        /* Get the message sender roles if no params where specified */
+        var userRoles = message.member.roles.map(role => role.name);
+        var strRoles = '';
+        userRoles.forEach(roleName => {
+          strRoles += roleName + ',\n';
+        });
+
+        message.channel.sendMessage(
+          tsundereJSON.function[COMMAND].userRoles.header + '\n\n' +
+          strRoles.replace('@', '') + '\n' +
+          tsundereJSON.function[COMMAND].userRoles.footer
+        );
+        return 'OK!';
+      break;
+    }
+    /* Set role */
 
     // Get the current roles on the server
+    /*
     console.log(message.guild.roles);
     console.log("\n");
+    */
 
-    var roles = message.guild.roles.map(role => [role.name, role.permissions]);
+    /*
+    var roles = message.guild.roles.map(role => [role.name]);
     console.log(roles);
+    */
   }
 }

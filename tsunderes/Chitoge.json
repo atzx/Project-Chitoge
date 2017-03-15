@@ -69,9 +69,13 @@
         "Admin",
         "Developers"
       ],
-      "message": {
-        "success": "",
-        "failure": ""
+      "guildRoles": {
+        "header": "Actualmente existen todos estos roles en el servidor: ",
+        "footer": "Y ni se te ocurra pedirme que te haga administrador o moderador, primate! "
+      },
+      "userRoles": {
+        "header": "Los roles que actualmente tienes son: ",
+        "footer": "Y si no te gusta el que tienes te aguantas!"
       }
     }
   }
