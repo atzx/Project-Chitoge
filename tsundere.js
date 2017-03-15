@@ -10,11 +10,13 @@
 /* Libraries! */
 const Discord = require('discord.js');
 const fs = require('fs');
+var express = require('express');
+var app = express();
 
 /* Values! */
 const bot = new Discord.Client();
 //The token of your bot - https://discordapp.com/developers/applications/me
-const TOKEN = process.env.TOKEN 
+const TOKEN = process.env.TOKEN
             || 'MjMwMTcwOTI3NTkyMjQzMjAw.Cst65A.9JbdaQWWOMcjWeUzsMomPhgaSi8';
 
 /* #### Global Variables! ################################################### */
@@ -145,6 +147,12 @@ bot.on("guildMemberAdd", (guild, member) => {
   /* Further actions! */
 
 });
+
+app.set('port', (process.env.PORT || 5000));
+
+app.listen(app.get('port'), function() {
+  console.log('Tsundere-bot running at port: '+app.get('port'));
+})
 
 /* Finally, Log in! */
 bot.login(TOKEN);
