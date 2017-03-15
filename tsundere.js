@@ -11,24 +11,25 @@
 const Discord = require('discord.js');
 const fs = require('fs');
 var express = require('express');
-var app = express();
 
 /* Values! */
 const bot = new Discord.Client();
 //The token of your bot - https://discordapp.com/developers/applications/me
 const TOKEN = process.env.TOKEN
-            || 'MjMwMTcwOTI3NTkyMjQzMjAw.Cst65A.9JbdaQWWOMcjWeUzsMomPhgaSi8';
+            || 'MjMwMDIyNDI5MzIwMjgyMTEz.C6r6sg.9NX-HEd01ir2w5UZFoPo12SYtho';
 
 /* #### Global Variables! ################################################### */
 /*
   NOTE: We can try making a .conf or a config file to change some initial values
 */
 var tsundere = "Chitoge";
+var app = express();
 var obj = JSON.parse(fs.readFileSync('tsunderes/'+tsundere+".json", 'utf8'));
 var commands = {};
 var commandList = [];
 
 /* #### Functions ########################################################### */
+
 /*
   @function: loadCommandFiles
   @description:
@@ -63,10 +64,10 @@ bot.on('ready', () => {
   // Initial message
   console.log('Tsundere bot v0.1 ready to go!');
   /*
-  console.log("------------------------------");
-  console.log("JSON: ");
-  console.log(obj);
-  console.log("------------------------------");
+    console.log("------------------------------");
+    console.log("JSON: ");
+    console.log(obj);
+    console.log("------------------------------");
   */
 
   // Load all available commands to display with "help"
