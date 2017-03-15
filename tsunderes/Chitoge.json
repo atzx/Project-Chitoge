@@ -65,10 +65,11 @@
     },
     "!role": {
       "explain": "Te explico el rol que tienes! Aun no funciona el comando asi que por favor contacta a un admin!",
-      "permission": [
-        "Admin",
-        "Developers"
-      ],
+      "valid_role": "Listo! en que mas te puedo ayudar?",
+      "invalid_role": "Y este rol que?! \"<INVALID_ROLE>\" no es valido aqui!",
+      "forbidden_role": "Buen intento! Para la otra te expulso del servidor!",
+      "unknown_role": "No encuentro el rol: \"<INVALID_ROLE>\". Segur@ que lo escribiste bien? Necesito que sea exactamente igual",
+      "forbidden_permission": "Mmmm? No pude asignarte el rol. Como quieren que este asignando roles si no tengo permisos!?",
       "guildRoles": {
         "header": "Actualmente existen todos estos roles en el servidor: ",
         "footer": "Y ni se te ocurra pedirme que te haga administrador o moderador, primate! "
