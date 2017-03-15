@@ -11,6 +11,16 @@
 */
 
 const COMMAND = "!role";
+const FORBIDDEN_ROLES = [
+  "@EVERYONE",
+  "EVERYONE",
+  "BOT",
+  "FOREIGNERS",
+  "MOD",
+  "DEVELOPERS",
+  "ADMIN",
+  "ADMINISTRATOR"
+];
 
 module.exports = {
   explain: function(client, message, tsundereJSON) {
@@ -19,6 +29,7 @@ module.exports = {
   },
   execute: function(client, message, tsundereJSON) {
     /* Analyze message and check if the command has some params */
+    var srcSyntax = message.content.split(' ');
     var msgSyntax = message.content.toLowerCase().split(' ');
     switch (msgSyntax[1]) {
       case "--list":
@@ -38,6 +49,46 @@ module.exports = {
         return 'OK!';
       break;
       case "--set":
+        if (msgSyntax[2] == '' || msgSyntax[2] == null || msgSyntax[2] == undefined) {
+          message.channel.sendMessage(
+            tsundereJSON.function[COMMAND].invalid_role.replace("<INVALID_ROLE>", srcSyntax[2])
+          );
+          return 'Invalid Role';
+        }
+        /* Load roles from the server */
+        var guildRoles = message.guild.roles.map(role => role.name).map( role => {
+          return role.toUpperCase();
+        });
+
+        guildRoles = guildRoles.filter(item => {
+          return FORBIDDEN_ROLES.indexOf(item) === -1;
+        })
+
+        if(guildRoles.includes(msgSyntax[2].toUpperCase())) {
+          message.member.addRole(message.guild.roles.find("name", srcSyntax[2])).catch(
+            error => {
+              console.log(error);
+              message.channel.sendMessage(
+                tsundereJSON.function[COMMAND].forbidden_permission
+              );
+              return 'Forbidden permission';
+            }
+          );
+          message.channel.sendMessage(
+            tsundereJSON.function[COMMAND].valid_role
+          )
+          return 'OK!';
+        } else if (FORBIDDEN_ROLES.includes(msgSyntax[2].toUpperCase())) {
+          message.channel.sendMessage(
+            tsundereJSON.function[COMMAND].forbidden_role
+          );
+          return 'Forbidden role';
+        } else {
+          message.channel.sendMessage(
+            tsundereJSON.function[COMMAND].unknown_role.replace("<INVALID_ROLE>", msgSyntax[2])
+          );
+          return 'Unknown role';
+        }
 
       break;
       default:
@@ -56,17 +107,5 @@ module.exports = {
         return 'OK!';
       break;
     }
-    /* Set role */
-
-    // Get the current roles on the server
-    /*
-    console.log(message.guild.roles);
-    console.log("\n");
-    */
-
-    /*
-    var roles = message.guild.roles.map(role => [role.name]);
-    console.log(roles);
-    */
   }
 }
