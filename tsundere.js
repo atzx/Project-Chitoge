@@ -14,7 +14,8 @@ const fs = require('fs');
 /* Values! */
 const bot = new Discord.Client();
 //The token of your bot - https://discordapp.com/developers/applications/me
-const TOKEN = 'MjMwMTcwOTI3NTkyMjQzMjAw.Cst65A.9JbdaQWWOMcjWeUzsMomPhgaSi8';
+const TOKEN = process.env.TOKEN 
+            || 'MjMwMTcwOTI3NTkyMjQzMjAw.Cst65A.9JbdaQWWOMcjWeUzsMomPhgaSi8';
 
 /* #### Global Variables! ################################################### */
 /*
@@ -86,12 +87,20 @@ bot.on('message', message => {
     // Have a variable to not mind lower and/or uppercase in the message.
     var msg = message.content.toLowerCase();
     var command = message.content.split(" ")[0];
+    console.log("Command: "+command);
 
-    if (msg.includes("--explain")) {
-      commands[command].explain(bot, message, obj);
-      return;
-    }
+    if(command in commands) {
+      if (msg.includes("--explain")) {
+        commands[command].explain(bot, message, obj);
+        return;
+      }
+
       commands[command].execute(bot, message, obj);
+    }else{
+
+      //Unknown Command!
+      message.channel.sendMessage(obj.unknownCommand);
+    }
   }
 });
 

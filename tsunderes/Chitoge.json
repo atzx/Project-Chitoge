@@ -14,6 +14,7 @@
       "footer": "Disfruta tu estadia y espero te diviertas con los demás smashers de la comunidad... Y no estés ocasionando problemas o me encargaré personalmente de ti... Y no te va a gustar..."
     }
   },
+  "unknownCommand": "Ese comando no existe! No puedes escribir bien un comando o que?! \nSi realmente lo necesitas, talvez deberías de usar **!help** para que te acuerdes.",
   "function": {
     "!help": {
       "explain": "Te explico como quiero que me hables, para que te pueda responder! Y si no te gusta puedes ir buscando a otra!",
@@ -61,6 +62,17 @@
         "Si!",
         "P-por supuesto que sí! Pero deja de preguntarme cuando todo mundo está viendo..."
       ]
+    },
+    "!role": {
+      "explain": "Te explico el rol que tienes! Aun no funciona el comando asi que por favor contacta a un admin!",
+      "permission": [
+        "Admin",
+        "Developers"
+      ],
+      "message": {
+        "success": "",
+        "failure": ""
+      }
     }
   }
 }
