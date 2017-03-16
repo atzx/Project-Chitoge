@@ -23,8 +23,8 @@ module.exports = {
     // YOUR CODE HERE
     return "OK!";
   },
-  explain: function(client, message, tsundereJSON) {
-    message.channel.sendMessage(tsundereJSON.function[COMMAND].explain);
+  help: function(client, message, tsundereJSON) {
+    message.channel.sendMessage(tsundereJSON.commands[COMMAND].explain);
     return "OK!";
   }
 }

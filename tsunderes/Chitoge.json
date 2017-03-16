@@ -5,7 +5,7 @@
     "private_msg": {
       "header": "Bienvenido al Discord de **<GUILD>**!",
       "intro": "Soy <BOTNAME>, Intento ayudar a la comunidad con tareas para administrar o hacer esto más divertido! Por el momento sigo aprendiendo como ayudar a la comunidad, pero espero ser de ayuda!",
-      "body": "Por el momento, sólo tienes acceso al canal de **#leame** (te recomiendo que lo leas) y **#asignacion_de_rol**, donde te asignamos a que estado perteneces y después tendrás acceso a todo el canal! (Usa **!role --explain** para saber como!)",
+      "body": "Por el momento, sólo tienes acceso al canal de **#leame** (te recomiendo que lo leas) y **#asignacion_de_rol**, donde te asignamos a que estado perteneces y después tendrás acceso a todo el canal! (Usa **!role --help** para saber como!)",
       "footer": "Para terminar, si necesitas saber en que más te puedo ayudar, intenta usar el comando '!help' y te diré en qué te puedo ayudar!\n\nNuevamente, Bienvenido!\nPor cierto, no ocasiones problemas o te daré una lección personalmente!"
     },
     "guild_msg": {
@@ -15,18 +15,39 @@
     }
   },
   "unknownCommand": "Ese comando no existe! No puedes escribir bien un comando o que?! \nSi realmente lo necesitas, talvez deberías de usar **!help** para que te acuerdes.",
-  "function": {
+  "commands": {
     "!help": {
-      "explain": "Te explico como quiero que me hables, para que te pueda responder! Y si no te gusta puedes ir buscando a otra!",
+      "explain": {
+        "header": "Te explico como quiero que me hables, para que te pueda responder! Y si no te gusta puedes ir buscando a otra!",
+        "footer": "",
+        "params": {
+
+        }
+      },
       "messageHeader": "Esto es en lo que te puedo ayudar por el momento: \n\n",
-      "messageFooter": "\nY si quieres saber como funciona cada uno, preguntame el comando que quieres que te explique agregando **'--explain'** después. Si te explico ahorita nunca dejaré de perder mi tiempo contigo!"
+      "messageFooter": "\nY si quieres saber como funciona cada uno, preguntame el comando que quieres que te explique agregando **'--help'** después. Si te explico ahorita nunca dejaré de perder mi tiempo contigo!"
     },
     "!bot": {
-      "explain": "Simplemente te contesto si puedo escucharte. Que esperabas?!",
+      "explain": {
+        "header": "Simplemente te contesto si puedo escucharte. Que esperabas?!",
+        "footer": "",
+        "params": {
+
+        }
+      },
       "message": "Llamaste?"
     },
     "!who": {
-      "explain": "Selecciono a una persona al azar! Eso te puede incluir! Y-y talvez yo t-tambien..."
+      "explain": {
+        "header": "De la gente quien está en el servidor, escojo a alguien o algunos! Y ni llores si te va tocando!",
+        "footer": "",
+        "params": {
+          "no-params": {
+            "syntax": "!who",
+            "definition": "Selecciono a una persona al azar! Eso te puede incluir baka! Y-y talvez yo t-tambien..."
+          }
+        }
+      }
     },
     "!eventos": {
       "explain": "Una lista de los próximos eventos a nivel nacional",
@@ -52,19 +73,57 @@
       }
     },
     "!8ball": {
-      "explain": "Preguntame algo y te respondo! No me culpes si mi respuesta no es coherente!",
+      "explain": {
+        "header": "Preguntame algo y te respondo! No me culpes si mi respuesta no es coherente!",
+        "footer": "",
+        "params": {
+
+        }
+      },
       "message": [
         "Y tu quien eres?!",
+        "Aja... y luego?",
+        "Que dijiste baka?!",
+        "Y porque tengo que contestar eso?!",
+        "Y eso que?!",
+        "... Y-y-y p-porque me preguntas e-eso?!",
+        "Que no es obvio? O necesitas que sea más especifica?",
         "Estas pero bien idiota!",
         "HA! Nunca!",
-        "Para alguien más es facil, pero para un primate como tú es imposible!",
+        "Ni a putazos! Mejor dejamelo a mí inútil!",
+        "Que no! Y no me hagas pegarte que me aseguraré que te duela!",
+        "No se, como quieres que sepa, baka?!",
         "T-Talvez...",
+        "Al menos lo intentaste... Mejor suerte para la próxima! Y-y eso n-no significa que me p-preocupe por t-ti!",
         "Si!",
+        "Deberias, o que no puedes? Si no deja voy buscando a otro esclavo más capaz",
+        "Si te ayudo si, p-pero no es p-porque me s-seas import-tante... ~~o a-algo...~~",
         "P-por supuesto que sí! Pero deja de preguntarme cuando todo mundo está viendo..."
       ]
     },
     "!role": {
-      "explain": "Te explico el rol que tienes! Aun no funciona el comando asi que por favor contacta a un admin!",
+      "explain": {
+        "header": "Cualquier cosa que esté relacionado con los roles y que esté dentro de mi alcanze. No es que te esté ayudando ni nada pero aún asi más vale que me agradezcas!",
+        "footer": "Y no se cuantas veces más te lo voy a decir, pero no puedo dar roles de admin ni de moderador o algún otro que se me haya dicho que no. Y por más que quiera verte rogar, no servirá de nada.",
+        "params": {
+          "no_params": {
+            "syntax": "!role",
+            "definition": "Te despliego todos los roles el cual tienes asignado"
+          },
+          "--set": {
+            "syntax": "!role --set <ROLE_NAME>",
+            "definition": "Te asigno el rol que deseas. Por más que me lo pidas, no te voy a dar el rol de admin o cualquier otro que no deba, baka! Aunque si sigues rogando algún dia lo haga..."
+          },
+          "--list": {
+            "syntax": "!role --list",
+            "definition": "Te despliego todos los roles que existen el servidor. Curioso? Yo te enseño ;) y no, no te voy a dar admin... "
+          },
+          "--find": {
+            "syntax": "!role --find <ROLE_NAME>",
+            "definition": "Este aún no sirve, pero te permitirá buscar gente quien tenga ese rol... o talvez no deberia..."
+          }
+        }
+      },
       "valid_role": "Listo! en que mas te puedo ayudar?",
       "invalid_role": "Y este rol que?! \"<INVALID_ROLE>\" no es valido aqui!",
       "forbidden_role": "Buen intento! Para la otra te expulso del servidor!",

@@ -12,12 +12,22 @@ const COMMAND = "!bot";
 
 module.exports = {
   execute: function(client, message, tsundereJSON) {
-    var reply = tsundereJSON.function[COMMAND].message || "Hola";
-    message.channel.sendMessage(reply);
-    return "OK!";
+    var msgParams = '';
+    var commandParams = tsundereJSON.commands[COMMAND].explain.params;
+    for (var param in commandParams) {
+      console.log(param);
+      msgParams += '**'+commandParams[param].syntax+'**: \n\t'+commandParams[param].definition+'\n';
+    }
+    message.channel.sendMessage(
+      '** ' + COMMAND + ' **\n' +
+      tsundereJSON.commands[COMMAND].explain.header+'\n\n' +
+      msgParams + '\n' +
+      tsundereJSON.commands[COMMAND].explain.footer
+    );
+    return 'OK!';
   },
-  explain: function(client, message, tsundereJSON) {
-    var reply = tsundereJSON.function[COMMAND].explain || "Contesto si estoy disponible";
+  help: function(client, message, tsundereJSON) {
+    var reply = tsundereJSON.commands[COMMAND].explain || "Contesto si estoy disponible";
     message.channel.sendMessage(reply);
     return "OK!";
   }

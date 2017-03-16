@@ -47,6 +47,7 @@ function loadCommandFiles(commandList) {
   var objReturner = {}
   for (var index in commandList) {
     var temp = commandList[index].replace("!", "");
+    console.log(temp);
     objReturner[commandList[index]] = require("./commands/"+temp+".js");
   }
   return objReturner;
@@ -71,7 +72,7 @@ bot.on('ready', () => {
   */
 
   // Load all available commands to display with "help"
-  commandsJSON = obj.function;
+  commandsJSON = obj.commands;
   for (var command in commandsJSON) {
     commandList.push(command);
   }
@@ -93,8 +94,8 @@ bot.on('message', message => {
     console.log("Command: "+command);
 
     if(command in commands) {
-      if (msg.includes("--explain")) {
-        commands[command].explain(bot, message, obj);
+      if (msg.includes("--help") || msg.includes("--explain")) {
+        commands[command].help(bot, message, obj);
         return;
       }
 

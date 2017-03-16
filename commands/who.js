@@ -12,6 +12,21 @@
 const COMMAND = "!who";
 
 module.exports = {
+  help: function(client, message, tsundereJSON) {
+    var msgParams = '';
+    var commandParams = tsundereJSON.commands[COMMAND].explain.params;
+    for (var param in commandParams) {
+      console.log(param);
+      msgParams += '**'+commandParams[param].syntax+'**\n\t'+commandParams[param].definition+'\n';
+    }
+    message.channel.sendMessage(
+      '** ' + COMMAND + ' **\n' +
+      tsundereJSON.commands[COMMAND].explain.header+'\n\n' +
+      msgParams + '\n' +
+      tsundereJSON.commands[COMMAND].explain.footer
+    );
+    return 'OK!';
+  },
   execute: function(client, message, tsundereJSON) {
     var src = message.guild.id;
     /*
@@ -27,10 +42,6 @@ module.exports = {
     */
     var who = client.guilds.get(src).members.random().user.username;
     message.channel.sendMessage(who);
-    return "OK!";
-  },
-  explain: function(client, message, tsundereJSON) {
-    message.channel.sendMessage(tsundereJSON.function[COMMAND].explain);
     return "OK!";
   }
 }
