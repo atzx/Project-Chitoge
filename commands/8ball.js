@@ -11,13 +11,24 @@
 const COMMAND = "!8ball";
 
 module.exports = {
-  execute: function(client, message, tsundereJSON) {
-    var rndm = Math.floor(Math.random() * tsundereJSON.function[COMMAND].message.length);
-    message.channel.sendMessage(tsundereJSON.function[COMMAND].message[rndm]);
-    return "OK!";
+  help: function(client, message, tsundereJSON) {
+    var msgParams = '';
+    var commandParams = tsundereJSON.commands[COMMAND].explain.params;
+    for (var param in commandParams) {
+      console.log(param);
+      msgParams += '**'+commandParams[param].syntax+'**\n\t'+commandParams[param].definition+'\n';
+    }
+    message.channel.sendMessage(
+      '** ' + COMMAND + ' **\n' +
+      tsundereJSON.commands[COMMAND].explain.header+'\n\n' +
+      msgParams + '\n' +
+      tsundereJSON.commands[COMMAND].explain.footer
+    );
+    return 'OK!';
   },
-  explain: function(client, message, tsundereJSON) {
-    message.channel.sendMessage(tsundereJSON.function[COMMAND].explain);
+  execute: function(client, message, tsundereJSON) {
+    var rndm = Math.floor(Math.random() * tsundereJSON.commands[COMMAND].message.length);
+    message.channel.sendMessage(tsundereJSON.commands[COMMAND].message[rndm]);
     return "OK!";
   }
 }

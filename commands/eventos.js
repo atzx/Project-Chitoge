@@ -12,7 +12,7 @@ const COMMAND = "!eventos";
 
 module.exports = {
   execute: function(client, message, tsundereJSON) {
-    var eventos = tsundereJSON.function[COMMAND].loseventos;
+    var eventos = tsundereJSON.commands[COMMAND].loseventos;
     var reply = "";
     for (var evento in eventos){
       var obj = eventos[evento];
@@ -21,8 +21,8 @@ module.exports = {
     message.channel.sendMessage(reply);
     return "OK!";
   },
-  explain: function(client, message, tsundereJSON) {
-    var reply = tsundereJSON.function[COMMAND].explain || "lista de eventos";
+  help: function(client, message, tsundereJSON) {
+    var reply = tsundereJSON.commands[COMMAND].explain || "lista de eventos";
     message.channel.sendMessage(reply);
     return "OK!";
   }
