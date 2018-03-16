@@ -2,7 +2,7 @@
   @File: Tsundere.js
   @Date: September 26, 2016
   @Version: 0.1
-  @Descriptition:
+  @Description:
     The main file for the bot. This is the starting point!
 */
 
